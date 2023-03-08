@@ -26,13 +26,10 @@ export default class App extends Component {
 
     this.setState(prevState => ({ contacts: [data, ...this.state.contacts] }));
 
-    this.toRenderList();
-  };
-  toRenderList = () => {
     return this.state.contacts;
   };
 
-  toRemoveItem = id => {
+  onDeleteContact = id => {
     this.setState(prev => ({
       contacts: prev.contacts.filter(el => el.id !== id),
     }));
@@ -70,7 +67,10 @@ export default class App extends Component {
 
         <Filter value={this.state.filter} onChange={this.toFilteInput} />
 
-        <ContactList data={filteredContact} delateContact={this.toRemoveItem} />
+        <ContactList
+          data={filteredContact}
+          delateContact={this.onDeleteContact}
+        />
       </Container>
     );
   }

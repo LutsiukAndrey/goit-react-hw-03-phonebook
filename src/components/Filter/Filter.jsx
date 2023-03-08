@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const onChange = ({ value, onChange }) => {
+const Filter = ({ value, onChange }) => {
   return (
     <form action="input">
-      <Filter type="text" value={value} onChange={onChange} />
+      <FilterInput type="text" value={value} onChange={onChange} />
     </form>
   );
 };
-export default onChange;
+export default Filter;
 
-onChange.propTypes = {
+Filter.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
-const Filter = styled.input`
+const FilterInput = styled.input`
   width: 300px;
   padding: 10px 40px;
   border-radius: 20px;

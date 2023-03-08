@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Component } from 'react';
 
 export class ContactList extends Component {
-  onDellateBtn = event => {
+  onDeleteBtn = event => {
     this.props.delateContact(event.currentTarget.id);
   };
   render() {
@@ -14,9 +14,9 @@ export class ContactList extends Component {
             return (
               <ContactItem key={id}>
                 {name} : {number}
-                <ContactBtn id={id} type="button" onClick={this.onDellateBtn}>
-                  delate
-                </ContactBtn>
+                <DeleteBtn id={id} type="button" onClick={this.onDeleteBtn}>
+                  delete
+                </DeleteBtn>
               </ContactItem>
             );
           })}
@@ -40,7 +40,7 @@ ContactList.propTypes = {
 const ContactItem = styled.li`
   margin-bottom: 20px;
 `;
-const ContactBtn = styled.button`
+const DeleteBtn = styled.button`
   margin-left: 20px;
   border-radius: 20px;
   border: transparent;
