@@ -4,6 +4,7 @@ import { Form } from './Form/Form';
 import { ContactList } from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import Container from './Container/Container';
+
 export default class App extends Component {
   state = {
     contacts: [
@@ -40,7 +41,19 @@ export default class App extends Component {
   toFilteInput = e => {
     this.setState({ filter: e.currentTarget.value });
   };
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts && parsedContacts.length) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
   render() {
     const { filter, contacts } = this.state;
     const normolizeFilter = filter.toLowerCase();
